@@ -1,0 +1,29 @@
+.hero {
+    background: $hero-bg;
+    display: flex;
+    height: $hero-height-sm;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    &:before {
+        content: '';
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 20px;
+        bottom: 20px;
+        opacity: 0.3;
+        z-index: 0;
+        border: 1px solid #ffffff;
+    }
+    .title {
+        font-size: $font-size-h1;
+        color: #fd1717;
+        align-self: center;
+    }
+}
+
+.loader {
+    font-size: 72px;
+    color: $brand-primary;
+}

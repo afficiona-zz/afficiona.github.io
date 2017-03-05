@@ -1,0 +1,14 @@
+{
+  "name": "afficiona",
+  "version": "0.0.0",
+  "authors": [
+    "Aman Pandey <afficiona4code@gmail.com>"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.7"
+  },
+  "keywords": [
+    "afficiona"
+  ],
+  "license": "MIT"
+}
