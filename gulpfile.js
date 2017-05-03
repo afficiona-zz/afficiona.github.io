@@ -17,16 +17,7 @@ var paths = {
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
-            baseDir: ''
-        }
-    });
-});
-
-// Static server
-gulp.task('show-demo', function() {
-    browserSync.init({
-        server: {
-            baseDir: paths.build
+            baseDir: './'
         }
     });
 });
@@ -61,6 +52,13 @@ gulp.task('copy:assets', function () {
         .pipe(browserSync.stream());
 });
 
+// Rerun the task when a file changes
+gulp.task('watch', function() {
+    gulp.watch(paths.scripts, ['scripts']);
+    gulp.watch(paths.styles, ['sass']);
+    gulp.watch(paths.app + '/index.html', ['copy:html']);
+});
+
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['sass', 'scripts', 'copy:html', 'copy:assets', 'browser-sync']);
+gulp.task('default', ['browser-sync', 'watch', 'sass', 'scripts', 'copy:html', 'copy:assets']);
 gulp.task('build', ['sass', 'scripts', 'copy:html']);
