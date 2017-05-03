@@ -26,177 +26,221 @@ $handle-knob-color: #ffffff;
 body {
   width: 100%;
   overflow-x: hidden;
-  background: #303d99;
+  background: #546090;
   .hero {
-    .cycle {
-      width: 462px;
-      height: 400px;
-      margin: 300px auto;
-      display: flex;
-      position: relative;
-      .tyre {
-        width: $cycle-tyre-radius * 2;
-        height: $cycle-tyre-radius * 2;
-        border: $cycle-tyre-thickness solid $cycle-tyre-thickness-color;
-        border-radius: $cycle-tyre-radius * 2;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    .wrapper {
+      width: 100%;
+      .cycle {
+        width: 462px;
+        height: 300px;
+        display: flex;
         position: relative;
-        align-self: flex-end;
-        &.front {
-          margin-left: $cycle-tyres-in-between-distance;
+        bottom: -90px;
+        z-index: 2;
+        margin: 0 auto;
+        opacity: 0;
+        .tyre {
+          width: $cycle-tyre-radius * 2;
+          height: $cycle-tyre-radius * 2;
+          border: $cycle-tyre-thickness solid $cycle-tyre-thickness-color;
+          border-radius: $cycle-tyre-radius * 2;
+          position: relative;
+          align-self: flex-end;
+          &.front {
+            margin-left: $cycle-tyres-in-between-distance;
+          }
+          .center {
+            background: $cycle-tyre-center-color;
+            width: $cycle-tyre-center-radius * 2;
+            height: $cycle-tyre-center-radius * 2;
+            border-radius: 20px;
+            position: absolute;
+            z-index: 2;
+            left: 50%;
+            top: 50%;
+            margin-left: -$cycle-tyre-center-radius;
+            margin-top: -$cycle-tyre-center-radius;
+          }
+          &:after {
+            content: '';
+            position: absolute;
+            border: $cycle-tyre-thickness-inner solid $cycle-tyre-thickness-inner-color;
+            left: 0;
+            top: 0;
+            width: $cycle-tyre-radius * 2 - 14;
+            height: $cycle-tyre-radius * 2 - 14;
+            border-radius: $cycle-tyre-radius * 2 - 14;
+          }
+          &:before {
+            content: '';
+            width: $cycle-tyre-radius;
+            height: $cycle-tyre-radius;
+            background: $cycle-tyre-rotating-shade-color;
+            position: absolute;
+            border-radius: $cycle-tyre-radius 0 0 0;
+            transform-origin: $cycle-tyre-radius - 7 $cycle-tyre-radius - 7;
+            animation: radialLoader .3s infinite linear;
+          }
         }
-        .center {
-          background: $cycle-tyre-center-color;
-          width: $cycle-tyre-center-radius * 2;
-          height: $cycle-tyre-center-radius * 2;
-          border-radius: 20px;
+        .rod {
+          background: $cycle-rod-color;
           position: absolute;
-          z-index: 2;
-          left: 50%;
-          top: 50%;
-          margin-left: -$cycle-tyre-center-radius;
-          margin-top: -$cycle-tyre-center-radius;
+          z-index: 1;
+          &.thick {
+            width: $cycle-rod-thick-thickness;
+          }
+          &.center-seat {
+            height: 150px;
+            transform: rotate(35deg);
+            transform-origin: bottom;
+            bottom: 50%;
+            left: 50%;
+            margin-left: -2px;
+            width: $cycle-rod-thin-thickness;
+          }
+          &.center-paddle {
+            width: 122px;
+            height: $cycle-rod-thin-thickness;
+            bottom: 50%;
+            left: 50%;
+            margin-left: -2px;
+            transform: rotate(0.5deg);
+            transform-origin: left;
+            border-radius: 10px;
+          }
+          &.paddle-seat {
+            height: 155px;
+            bottom: 50%;
+            left: 50%;
+            margin-left: -2px;
+            transform: rotate(-15deg);
+            transform-origin: bottom;
+          }
+          &.paddle-handle {
+            height: 170px;
+            bottom: 50%;
+            left: 50%;
+            margin-left: -4px;
+            transform: rotate(47deg);
+            transform-origin: bottom;
+          }
+          &.seat-handle {
+            width: 160px;
+            height: $cycle-rod-thick-thickness;
+            bottom: 50%;
+            left: 30px;
+            top: 30px;
+            margin-left: -4px;
+            transform: rotate(2deg);
+            transform-origin: left;
+          }
+          &.center-handle {
+            height: 175px;
+            bottom: 50%;
+            left: 50%;
+            margin-left: -2px;
+            transform: rotate(-19deg);
+            transform-origin: bottom;
+            width: $cycle-rod-thick-thickness;
+          }
         }
+
+        .seat {
+          width: $seat-width;
+          height: 10px;
+          background: $seat-color;
+          position: absolute;
+          z-index: 1;
+          border-radius: 4px;
+          left: $cycle-tyre-radius * 2 - ($seat-width/1.5);
+          bottom: ($cycle-tyre-radius * 2) + 53px;
+        }
+
+        .handle {
+          width: $handle-width;
+          height: 5px;
+          background: $cycle-rod-color;
+          position: absolute;
+          right: $cycle-tyre-radius * 2 - ($handle-width*1.75);
+          bottom: ($cycle-tyre-radius * 2) + 72px;
+          border-radius: 10px 0 0 10px;
+          &:after {
+            content: '';
+            background: $handle-knob-color;
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            border-radius: 10px;
+            right: -2px;
+            top: 0;
+            margin-top: -5px;
+          }
+        }
+
+        .paddle {
+          width: $cycle-paddle-ring-radius * 2;
+          height: $cycle-paddle-ring-radius * 2;
+          border-radius: 100px;
+          border: $cycle-paddle-ring-thickness solid $cycle-paddle-ring-color;
+          position: absolute;
+          bottom: $cycle-tyre-radius - $cycle-paddle-ring-radius;
+          left: $cycle-tyre-radius * 2 + 8px;
+          &:after, &:before {
+            content: '';
+            width: $cycle-tyre-radius + 22px;
+            background: $cycle-paddle-ring-color;
+            height: 2px;
+            position: absolute;
+            right: $cycle-paddle-ring-radius;
+          }
+          &:before {
+            transform: rotate(-5deg);
+            transform-origin: right;
+            top: -2px;
+          }
+          &:after {
+            transform: rotate(5deg);
+            transform-origin: right;
+            bottom: -3px;
+          }
+        }
+      }
+      .road {
+        background: #5c5c55;
+        height: 190px;
+        width: 100%;
+        margin-bottom: 100px;
+        display: flex;
+        align-items: center;
+        align-self: flex-end;
+        justify-content: space-between;
+        .marker {
+          height: 10px;
+          width: 140px;
+          background: #ffffff;
+          position: relative;
+          animation: roadMoving 1s infinite linear;
+        }
+      }
+      .sun {
+        background: yellow;
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        align-self: flex-start;
+        position: absolute;
+        right: 30px;
+        top: 30px;
         &:after {
           content: '';
-          position: absolute;
-          border: $cycle-tyre-thickness-inner solid $cycle-tyre-thickness-inner-color;
-          left: 0;
-          top: 0;
-          width: $cycle-tyre-radius * 2 - 14;
-          height: $cycle-tyre-radius * 2 - 14;
-          border-radius: $cycle-tyre-radius * 2 - 14;
-        }
-        &:before {
-          content: '';
-          width: $cycle-tyre-radius;
-          height: $cycle-tyre-radius;
+          width: 400px;
+          height: 400px;
           background: $cycle-tyre-rotating-shade-color;
           position: absolute;
           border-radius: $cycle-tyre-radius 0 0 0;
-          transform-origin: $cycle-tyre-radius - 7 $cycle-tyre-radius - 7;
-          animation: radialLoader .6s infinite linear;
-        }
-      }
-      .rod {
-        background: $cycle-rod-color;
-        position: absolute;
-        z-index: 1;
-        &.thick {
-          width: $cycle-rod-thick-thickness;
-        }
-        &.center-seat {
-          height: 150px;
-          transform: rotate(35deg);
-          transform-origin: bottom;
-          bottom: 50%;
-          left: 50%;
-          margin-left: -2px;
-          width: $cycle-rod-thin-thickness;
-        }
-        &.center-paddle {
-          width: 122px;
-          height: $cycle-rod-thin-thickness;
-          bottom: 50%;
-          left: 50%;
-          margin-left: -2px;
-          transform: rotate(0.5deg);
-          transform-origin: left;
-          border-radius: 10px;
-        }
-        &.paddle-seat {
-          height: 155px;
-          bottom: 50%;
-          left: 50%;
-          margin-left: -2px;
-          transform: rotate(-15deg);
-          transform-origin: bottom;
-        }
-        &.paddle-handle {
-          height: 170px;
-          bottom: 50%;
-          left: 50%;
-          margin-left: -4px;
-          transform: rotate(47deg);
-          transform-origin: bottom;
-        }
-        &.seat-handle {
-          width: 160px;
-          height: $cycle-rod-thick-thickness;
-          bottom: 50%;
-          left: 30px;
-          top: 30px;
-          margin-left: -4px;
-          transform: rotate(2deg);
-          transform-origin: left;
-        }
-        &.center-handle {
-          height: 175px;
-          bottom: 50%;
-          left: 50%;
-          margin-left: -2px;
-          transform: rotate(-19deg);
-          transform-origin: bottom;
-          width: $cycle-rod-thick-thickness;
-        }
-      }
-
-      .seat {
-        width: $seat-width;
-        height: 10px;
-        background: $seat-color;
-        position: absolute;
-        z-index: 1;
-        border-radius: 4px;
-        left: $cycle-tyre-radius * 2 - ($seat-width/1.5);
-        bottom: ($cycle-tyre-radius * 2) + 53px;
-      }
-
-      .handle {
-        width: $handle-width;
-        height: 5px;
-        background: $cycle-rod-color;
-        position: absolute;
-        right: $cycle-tyre-radius * 2 - ($handle-width*1.75);
-        bottom: ($cycle-tyre-radius * 2) + 72px;
-        border-radius: 10px 0 0 10px;
-        &:after {
-          content: '';
-          background: $handle-knob-color;
-          width: 14px;
-          height: 14px;
-          position: absolute;
-          border-radius: 10px;
-          right: -2px;
-          top: 0;
-          margin-top: -5px;
-        }
-      }
-
-      .paddle {
-        width: $cycle-paddle-ring-radius * 2;
-        height: $cycle-paddle-ring-radius * 2;
-        border-radius: 100px;
-        border: $cycle-paddle-ring-thickness solid $cycle-paddle-ring-color;
-        position: absolute;
-        bottom: $cycle-tyre-radius - $cycle-paddle-ring-radius;
-        left: $cycle-tyre-radius * 2 + 8px;
-        &:after, &:before {
-          content: '';
-          width: $cycle-tyre-radius + 22px;
-          background: $cycle-paddle-ring-color;
-          height: 2px;
-          position: absolute;
-          right: $cycle-paddle-ring-radius;
-        }
-        &:before {
-          transform: rotate(-5deg);
-          transform-origin: right;
-          top: -2px;
-        }
-        &:after {
-          transform: rotate(5deg);
-          transform-origin: right;
-          bottom: -3px;
         }
       }
     }
@@ -210,4 +254,30 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+@keyframes roadMoving {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.start {
+  background: #fff;
+  width: 4px;
+  height: 4px;
+  position: absolute;
+}
+
+.line {
+  background: #fff;
+  height: 4px;
+  width: 200px;
+  position: absolute;
+  -ms-transform-origin: left;
+  -webkit-transform-origin: left;
+  transform-origin: left;
 }
