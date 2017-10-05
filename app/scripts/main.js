@@ -1,13 +1,10 @@
 /**
- * Memory board game Algorithm.
- * 1) Set of two actions.
- *    a) Store number of first click.
- *    b) If same number on second click, Success.
- *    c) Else, Revert.(Failure) (Increment attempts counter)
+ * Paint Board
  **/
 
 (function($) {
   'use strict';
+  return;
 
   var defaults = {
     clicked: false,
@@ -47,6 +44,5 @@
     });
     $(this).append(line);
     defaults.startX = defaults.startY = defaults.endX = defaults.endY = defaults.degree = defaults.hypotenuse = 0;
-    console.log(defaults);
   });
 })(jQuery);

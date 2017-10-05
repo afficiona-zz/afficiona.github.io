@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
 var sass = require('gulp-sass');
 var del = require('del');
@@ -33,11 +34,12 @@ gulp.task('scripts', function() {
     // Minify and copy all JavaScript (except vendor scripts)
     // with sourcemaps all the way down
     return gulp.src(paths.scripts)
-        .pipe(sourcemaps.init())
-        .pipe(uglify())
-        .pipe(concat('all.min.js'))
-        .pipe(gulp.dest(paths.build + '/scripts'))
-        .pipe(browserSync.stream());
+      .pipe(sourcemaps.init())
+      .pipe(babel())
+      // .pipe(uglify())
+      .pipe(concat('all.min.js'))
+      .pipe(gulp.dest(paths.build + '/scripts'))
+      .pipe(browserSync.stream());
 });
 
 gulp.task('copy:html', function () {
